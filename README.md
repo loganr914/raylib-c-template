@@ -1,10 +1,10 @@
 # Raylib C Template
 
-### [tsoding/raylib-template](https://github.com/tsoding/raylib-template/) with my personal preference of additions
+### My additions to [tsoding/raylib-template](https://github.com/tsoding/raylib-template/)
 
 ## Adaptive integer scaling
 
-This template has an integer scaling system, like you'd see with emulators of low resolution systems.
+This template has an adaptive integer scaling system, like you'd see with emulators of low resolution systems. It multiplies the original render resolution to fill the window size as best it can while maintaining the original aspect ratio.
 
 ## Compiling and running your game
 
@@ -28,8 +28,4 @@ $ ./main
 
 ## Congratulations!
 
-You are now an independent game developer! 
-
-I hope you make something great
-
-Don't stay up too late!
+You are now an independent game developer! Make something you're proud of, and remember me when you make it big.
