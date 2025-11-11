@@ -4,7 +4,11 @@
 
 ## Adaptive integer scaling
 
-This template has an adaptive integer scaling system, like you'd see with emulators of low resolution systems. It multiplies the original render resolution to fill the window size as best it can while maintaining the original aspect ratio.
+This template has an adaptive integer scaling system, like you'd see with emulators of older low-res consoles. It multiplies the original render resolution to fit within the current window size while maintaining perfect integer scale. i.e. if your render resolution is 320x240, having a window size of 720x720 will scale the render texture 2
+
+## Camera system
+
+Standard Camera2D at 1.0 zoom that doesn't require any
 
 ## Compiling and running your game
 

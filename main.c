@@ -1,58 +1,74 @@
 #include <raylib.h>
 
-// + CONSTANTS + //
-const int renderWidth = 640;
-const int renderHeight = 480;
+// + CONSTANTS
+const int renderWidth = 320;
+const int renderHeight = 240;
 
-// + PROGRAM MAIN ENTRY POINT + //
+// + PROGRAM MAIN ENTRY POINT
 int main(void)
 {
     // Initialization
     SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
-    InitWindow(800, 600, "Raylib Template");
+    InitWindow(960, 720, "Raylib Template");
     // SetExitKey(KEY_F4);
 
     // Load render texture
     RenderTexture2D canvas = LoadRenderTexture(renderWidth, renderHeight);
 
+    // Camera
     Camera2D gameCamera = { 0 };
     gameCamera.zoom = 1.0f;
+
+    // Player
 
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
     {
-        // + UPDATE LOOP + //
+        // + UPDATE LOOP
 
         // Render texture integer scaling
-        float windowWidth = GetRenderWidth();
-        float windowHeight = GetRenderHeight();
+        int windowWidth = GetRenderWidth();
+        int windowHeight = GetRenderHeight();
 
-        int scale = windowWidth/renderWidth;
+        int renderScale = windowHeight/renderHeight;
 
-        float scaledWidth = renderWidth * scale;
-        float scaledHeight = renderHeight * scale;
+        int scaledWidth = renderWidth * renderScale;
+        int scaledHeight = renderHeight * renderScale;
 
-        float renderX = (windowWidth - scaledWidth) * 0.5f;
-        float renderY = (windowHeight - scaledHeight) * 0.5f;
+        float renderX = (windowWidth/2) - (scaledWidth/2);
+        float renderY = (windowHeight/2) - (scaledHeight/2);
 
         Rectangle sourceRec = { 0.0f, 0.0f, (float)canvas.texture.width, -(float)canvas.texture.height };
-        Rectangle destRec = { renderX, renderY, scaledWidth, scaledHeight };
+        Rectangle destRec = { renderX, renderY, (float)scaledWidth, (float)scaledHeight };
 
+
+        // Player input
+        if (IsKeyDown(KEY_W))
+        {
+
+        }
+
+
+        // Keybindings
         if (IsKeyPressed(KEY_F3))
         {
             ToggleFullscreen();
         }
 
-        // + DRAW LOOP + //
-        
+
+
+        // + DRAW LOOP
+
         // Draw to render texture
         BeginTextureMode(canvas);
+        ClearBackground(DARKGRAY);
         BeginMode2D(gameCamera);
-            ClearBackground(DARKGRAY);
+
+            // 
 
             // Circle
-            DrawCircleV((Vector2){50, 50}, 20, WHITE);
+            DrawCircleV((Vector2){renderWidth/2, renderHeight/2}, 20, WHITE);
 
         EndMode2D();
         EndTextureMode();
@@ -71,10 +87,16 @@ int main(void)
                 WHITE
             );
 
-            // Draw whatever you want to appear on top of the render texture at native window resolution
+            // Draw whatever you want to appear on top of the render texture
 
             // Stats display
             DrawFPS(0, 0);
+
+            DrawText(TextFormat("Window size: %ix%i", windowWidth, windowHeight), 0, 20, 20, WHITE);
+
+            DrawText(TextFormat("Scaled size: %ix%i", scaledWidth, scaledHeight), 0, 40, 20, WHITE);
+
+            DrawText(TextFormat("Render scale: %ix", renderScale), 0, 60, 20, WHITE);
 
         EndDrawing();
     }
