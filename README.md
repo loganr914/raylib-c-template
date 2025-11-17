@@ -1,35 +1,49 @@
 # Raylib C Template
 
-### My additions to [tsoding/raylib-template](https://github.com/tsoding/raylib-template/)
+### My additions to [tsoding/raylib-template](https://github.com/tsoding/raylib-template/),
+
 
 ## Adaptive integer scaling
 
-This template has an adaptive integer scaling system, like you'd see with emulators of older low-res consoles. It multiplies the original render resolution to fit within the current window size while maintaining perfect integer scale. i.e. if your render resolution is 320x240, having a window size of 720x720 will scale the render texture 2
+This template has an adaptive integer scaling system, like you'd see with emulators of older low-res consoles. It multiplies the original render resolution to fit the window size as it changes, but sticks to integer multiples.
+
+For example, if your render resolution is 320 x 240, having a window size of 720 x 720 will only allow for 2x scale, making the render texture draw at 640 x 480.
+
 
 ## Camera system
 
-Standard Camera2D at 1.0 zoom that doesn't require any
+Standard Camera2D at 1.0 zoom that is already configured to keep the player centered and follow as it moves.
+
 
 ## Compiling and running your game
 
-Compile ```nob.c``` by running:
+In order to compile your game with nob.h, you must first compile `nob.c` because it is what executes the compilation of the game.
 
-```console
-$ cc -o nob nob.c
+Modifying `"main"` on line 15 of `nob.c` will change the name of the executable that your game is compiled into, for example:
+
+```c
+cmd_append(&cmd, "-o", "Game Name", "main.c");
 ```
 
-Then, run ```nob``` to compile ```main```:
+Compile `nob.c` by running:
 
 ```console
-$ ./nob
+cc -o nob nob.c
 ```
 
-Now, you can run your project with:
+Then simply execute the compiled `nob` binary to compile `main`:
 
 ```console
-$ ./main
+./nob
 ```
+
+Now, you can run your project by running the compiled :
+
+```console
+./main
+```
+
 
 ## Congratulations!
 
-You are now an independent game developer! Make something you're proud of, and remember me when you make it big.
+You are now an independent game developer!
